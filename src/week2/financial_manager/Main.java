@@ -3,7 +3,7 @@
  */
 
 
-package week2.financial_manager.copy;
+package week2.financial_manager;
 
 import week1.financial_manager.controller.Controller;
 import week1.financial_manager.model.Model;

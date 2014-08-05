@@ -21,8 +21,6 @@ public class ConnectionTest {
 		try {
 		    conn =   DriverManager.getConnection("jdbc:mysql://localhost/twitter?" +
 		                                   "user=root&password=12121212");
-
-		    // Do something with the Connection
 		} catch (SQLException ex) {
 		    // handle any errors
 		    System.out.println("SQLException: " + ex.getMessage());

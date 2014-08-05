@@ -2,7 +2,7 @@
  * @author clack008@gmail.com
  */
 
-package week2.financial_manager.model.copy;
+package week2.financial_manager.model;
 
 import java.util.Comparator;
 import java.util.Date;

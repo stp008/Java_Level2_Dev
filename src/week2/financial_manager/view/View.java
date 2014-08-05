@@ -2,7 +2,7 @@
  * @author clack008@gmail.com
  */
 
-package week2.financial_manager.view.copy;
+package week2.financial_manager.view;
 
 import java.util.Set;
 

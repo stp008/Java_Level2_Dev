@@ -2,7 +2,7 @@
  * @author clack008@gmail.com
  */
 
-package week2.financial_manager.commands.copy;
+package week2.financial_manager.commands;
 
 public enum Commands {
 	CREATE_USER, 
