@@ -11,12 +11,11 @@ import java.util.Set;
 public class DataStoreImpl implements DataStore {
 
 	private Map<String, User> users;
-	
+
 	public DataStoreImpl() {
 		users = new HashMap<>();
 	}
-	
-	
+
 	@Override
 	public User getUser(String name) {
 		return users.get(name);
@@ -49,7 +48,8 @@ public class DataStoreImpl implements DataStore {
 
 	@Override
 	public void addRecord(Account account, Record record) {
-		users.get(account.getOwner()).getAccount(account.getId()).addRecord(record);
+		users.get(account.getOwner()).getAccount(account.getId())
+				.addRecord(record);
 	}
 
 	@Override
@@ -64,7 +64,8 @@ public class DataStoreImpl implements DataStore {
 
 	@Override
 	public Record removeRecord(Account from, Record record) {
-		return users.get(from.getOwner()).getAccount(from.getId()).removeRecord(record);
+		return users.get(from.getOwner()).getAccount(from.getId())
+				.removeRecord(record);
 	}
 
 }

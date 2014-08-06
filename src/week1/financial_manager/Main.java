@@ -2,7 +2,6 @@
  * @author clack008@gmail.com
  */
 
-
 package week1.financial_manager;
 
 import week1.financial_manager.controller.Controller;
@@ -17,7 +16,7 @@ public class Main {
 		ViewImpl view = new ViewImpl();
 		Controller controller = new Controller(model, view);
 		controller.init();
-		controller.process();		
+		controller.process();
 	}
 
 }
