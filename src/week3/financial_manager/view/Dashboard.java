@@ -10,9 +10,18 @@ import javax.swing.UnsupportedLookAndFeelException;
 import de.erichseifert.gral.data.DataTable;
 import de.erichseifert.gral.plots.PiePlot;
 import de.erichseifert.gral.plots.PiePlot.PieSliceRenderer;
+import de.erichseifert.gral.plots.XYPlot;
 import de.erichseifert.gral.plots.colors.LinearGradient;
+import de.erichseifert.gral.plots.lines.DefaultLineRenderer2D;
+import de.erichseifert.gral.plots.lines.LineRenderer;
 import de.erichseifert.gral.ui.InteractivePanel;
 import de.erichseifert.gral.util.Insets2D;
+
+
+
+
+
+
 
 
 
@@ -27,9 +36,11 @@ import java.awt.FlowLayout;
 import javax.swing.JTree;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.JToolBar;
 import javax.swing.JInternalFrame;
 import javax.swing.JDesktopPane;
@@ -38,16 +49,24 @@ import javax.swing.JSplitPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
+
 import net.miginfocom.swing.MigLayout;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+
 import java.awt.List;
+
 import javax.swing.JPopupMenu;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JMenuItem;
+
 import java.awt.Toolkit;
+
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JComboBox;
@@ -60,6 +79,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ListSelectionModel;
+
+import week3.SimplePiePlot;
 
 public class Dashboard {
 
@@ -160,6 +181,12 @@ public class Dashboard {
 		panel_6.setBorder(new TitledBorder(null, "\u0413\u0440\u0430\u0444\u0438\u043A \u0440\u0430\u0441\u0445\u043E\u0434\u043E\u0432", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.add(panel_6, "cell 0 2,grow");
 		panel_6.setLayout(new MigLayout("", "[100%]", "[100%]"));
+		
+		///////////////////////////////
+		SimplePiePlot simplePiePlot = new SimplePiePlot();
+		simplePiePlot.setBackground(UIManager.getColor("CheckBox.background"));
+		panel_6.add(simplePiePlot, "alignx center,aligny center");
+		//////////////////////////////
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(null, "\u0422\u0440\u0430\u043D\u0437\u0430\u043A\u0446\u0438\u0438", TitledBorder.LEADING, TitledBorder.TOP, null, null));

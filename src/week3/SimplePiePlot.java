@@ -24,6 +24,12 @@ package week3;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.PaintContext;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.ColorModel;
 import java.util.Random;
 
 import de.erichseifert.gral.data.DataTable;
@@ -63,7 +69,6 @@ public class SimplePiePlot extends ExamplePanel {
 		plot.setLegendVisible(true);
 		// Add some margin to the plot area
 		plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
-
 		PieSliceRenderer pointRenderer =
 				(PieSliceRenderer) plot.getPointRenderer(data);
 		// Change relative size of inner region
@@ -87,12 +92,12 @@ public class SimplePiePlot extends ExamplePanel {
 
 	@Override
 	public String getTitle() {
-		return "Donut plot";
+		return "График расходов";
 	}
 
 	@Override
 	public String getDescription() {
-		return String.format("Donut plot of %d random data values", SAMPLE_COUNT);
+		return String.format("Долевой график расходов держателя счета", SAMPLE_COUNT);
 	}
 
 	public static void main(String[] args) {
