@@ -7,13 +7,15 @@ import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
+@SuppressWarnings("serial")
 public class TransactionCellRenderer extends DefaultListCellRenderer {
 
 	JTextArea area;
 
 	@Override
-	public Component getListCellRendererComponent(JList list, Object value,
-			int index, boolean isSelected, boolean cellHasFocus) {
+	public Component getListCellRendererComponent(
+			@SuppressWarnings("rawtypes") JList list, Object value, int index,
+			boolean isSelected, boolean cellHasFocus) {
 
 		area = new JTextArea();
 		area.setEditable(false);

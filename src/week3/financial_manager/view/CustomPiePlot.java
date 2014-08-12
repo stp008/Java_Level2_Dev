@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GRAL.  If not, see <http://www.gnu.org/licenses/>.
  */
-package week3;
+package week3.financial_manager.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -34,8 +34,7 @@ import de.erichseifert.gral.plots.colors.LinearGradient;
 import de.erichseifert.gral.ui.InteractivePanel;
 import de.erichseifert.gral.util.Insets2D;
 
-
-public class SimplePiePlot extends ExamplePanel {
+public class CustomPiePlot extends ExamplePanel {
 	/** Version id for serialization. */
 	private static final long serialVersionUID = -3039317265508932299L;
 
@@ -44,7 +43,7 @@ public class SimplePiePlot extends ExamplePanel {
 	private static Random random = new Random();
 
 	@SuppressWarnings("unchecked")
-	public SimplePiePlot() {
+	public CustomPiePlot() {
 		// Create data
 		DataTable data = new DataTable(Integer.class);
 		for (int i = 0; i < SAMPLE_COUNT; i++) {
@@ -63,8 +62,8 @@ public class SimplePiePlot extends ExamplePanel {
 		plot.setLegendVisible(true);
 		// Add some margin to the plot area
 		plot.setInsets(new Insets2D.Double(20.0, 40.0, 40.0, 40.0));
-		PieSliceRenderer pointRenderer =
-				(PieSliceRenderer) plot.getPointRenderer(data);
+		PieSliceRenderer pointRenderer = (PieSliceRenderer) plot
+				.getPointRenderer(data);
 		// Change relative size of inner region
 		pointRenderer.setInnerRadius(0.4);
 		// Change the width of gaps between segments
@@ -78,7 +77,7 @@ public class SimplePiePlot extends ExamplePanel {
 		pointRenderer.setValueFont(Font.decode(null).deriveFont(Font.BOLD));
 		InteractivePanel panel = new InteractivePanel(plot);
 		panel.setZoomable(false);
-		//panel.setAutoscrolls(false);
+		// panel.setAutoscrolls(false);
 		panel.setPannable(false);
 		// Add plot to Swing component
 		add(panel, BorderLayout.CENTER);
@@ -91,10 +90,11 @@ public class SimplePiePlot extends ExamplePanel {
 
 	@Override
 	public String getDescription() {
-		return String.format("Долевой график расходов держателя счета", SAMPLE_COUNT);
+		return String.format("Долевой график расходов держателя счета",
+				SAMPLE_COUNT);
 	}
 
 	public static void main(String[] args) {
-		new SimplePiePlot().showInFrame();
+		new CustomPiePlot().showInFrame();
 	}
 }

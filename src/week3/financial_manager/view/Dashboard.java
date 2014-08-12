@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,7 +21,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -34,7 +32,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 import net.miginfocom.swing.MigLayout;
-import week3.SimplePiePlot;
 
 public class Dashboard {
 
@@ -166,7 +163,7 @@ public class Dashboard {
 		panel_6.setLayout(new MigLayout("", "[100%]", "[100%]"));
 
 		// /////////////////////////////
-		SimplePiePlot simplePiePlot = new SimplePiePlot();
+		CustomPiePlot simplePiePlot = new CustomPiePlot();
 		simplePiePlot.setBackground(UIManager.getColor("CheckBox.background"));
 		panel_6.add(simplePiePlot, "alignx center,aligny center");
 		// ////////////////////////////
