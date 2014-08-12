@@ -1,34 +1,31 @@
 package week3.financial_manager.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-
-import javax.swing.JLabel;
-
-
-import javax.swing.JTextField;
-
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-
-import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import java.awt.Color;
-import java.awt.Toolkit;
 
 public class Authorization {
 
 	private JFrame frmFinancialManager;
-	private JTextField textField;
 	private JTextField textField_1;
+	private JLabel lblNewLabel_2 = new JLabel("");
+	private JLabel label = new JLabel("");
+	private JLabel lblNewLabel = new JLabel(
+			"\u041F\u0430\u0440\u043E\u043B\u044C");
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -48,7 +45,6 @@ public class Authorization {
 			public void run() {
 				try {
 					Authorization window = new Authorization();
-					window.frmFinancialManager.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -61,6 +57,7 @@ public class Authorization {
 	 */
 	public Authorization() {
 		initialize();
+		this.frmFinancialManager.setVisible(true);
 	}
 
 	/**
@@ -91,22 +88,17 @@ public class Authorization {
 		frmFinancialManager.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 
-		JLabel label = new JLabel("");
 		label.setForeground(Color.RED);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		frmFinancialManager.getContentPane().add(label);
 
-		JLabel lblNewLabel = new JLabel("\u041F\u0430\u0440\u043E\u043B\u044C");
 		lblNewLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		frmFinancialManager.getContentPane().add(lblNewLabel);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
-		frmFinancialManager.getContentPane().add(textField);
-		textField.setColumns(1);
+		passwordField = new JPasswordField();
+		frmFinancialManager.getContentPane().add(passwordField);
 
-		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setForeground(Color.RED);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		frmFinancialManager.getContentPane().add(lblNewLabel_2);
@@ -114,8 +106,7 @@ public class Authorization {
 		JButton btnNewButton = new JButton("\u0412\u0445\u043E\u0434");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				label.setText("Неправильное имя.");
-				lblNewLabel_2.setText("Неправильный пароль");
+				Authorization.this.handleLogin();
 			}
 		});
 		btnNewButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
@@ -125,6 +116,17 @@ public class Authorization {
 				"\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F");
 		btnNewButton_1.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
 		frmFinancialManager.getContentPane().add(btnNewButton_1);
+	}
+
+	private void handleLogin() {
+		if (this.passwordField.getText().equals("password")
+				&& this.textField_1.getText().equals("login")) {
+			frmFinancialManager.dispose();
+			new Dashboard();
+		} else {
+			label.setText("Неправильное имя.");
+			lblNewLabel_2.setText("Неправильный пароль");
+		}
 	}
 
 }

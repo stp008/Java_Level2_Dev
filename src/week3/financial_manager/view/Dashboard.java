@@ -4,11 +4,14 @@ import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +22,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -53,7 +57,6 @@ public class Dashboard {
 			public void run() {
 				try {
 					Dashboard window = new Dashboard();
-					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,6 +69,7 @@ public class Dashboard {
 	 */
 	public Dashboard() {
 		initialize();
+		this.frame.setVisible(true);
 	}
 
 	/**
@@ -78,7 +82,7 @@ public class Dashboard {
 				.getImage(
 						"C:\\Users\\Just a man\\Desktop\\1399996127_Customer_Male_Light.png"));
 		frame.setTitle("\u0424\u0438\u043D\u0430\u043D\u0441\u043E\u0432\u044B\u0439 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440");
-		frame.setBounds(100, 100, 972, 719);
+		frame.setBounds(100, 100, 1227, 719);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(
 				new MigLayout("", "[20%,grow][50%,grow][30%,grow]", "[100%]"));
@@ -99,6 +103,8 @@ public class Dashboard {
 		panel_1.add(scrollPane_1, "cell 0 1,grow");
 
 		JTree tree = new JTree();
+		tree.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tree.setShowsRootHandles(true);
 		tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode(
 				"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438") {
 			{
@@ -176,6 +182,8 @@ public class Dashboard {
 		panel_3.add(scrollPane, "cell 0 0,grow");
 
 		JList list = new JList();
+		list.setCellRenderer(new TransactionCellRenderer());
+		list.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setBorder(new EmptyBorder(5, 10, 10, 10));
 		list.setModel(new AbstractListModel() {
@@ -237,13 +245,28 @@ public class Dashboard {
 
 		JMenuItem menuItem_8 = new JMenuItem(
 				"\u0421\u043C\u0435\u043D\u0438\u0442\u044C \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F");
+		menuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new Authorization();
+			}
+		});
 		menu_4.add(menuItem_8);
 
 		JMenuItem menuItem_9 = new JMenuItem(
 				"\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F");
 		menu_4.add(menuItem_9);
 
+		JMenuItem menuItem_11 = new JMenuItem(
+				"\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F");
+		menu_4.add(menuItem_11);
+
 		JMenuItem menuItem_10 = new JMenuItem("\u0412\u044B\u0445\u043E\u0434");
+		menuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		menu_4.add(menuItem_10);
 
 		JMenu menu = new JMenu("\u0421\u0447\u0435\u0442\u0430");
