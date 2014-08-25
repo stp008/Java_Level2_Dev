@@ -8,11 +8,11 @@ import java.util.Comparator;
 import java.util.Date;
 
 import week1.financial_manager.commands.Tags;
-import week3.financial_manager.utils.IdGenerator;
+import week3.financial_manager.utils.IDGenerator;
 
 public class Record implements Comparable<Record> {
 
-	private static int count = IdGenerator.getRecordId();
+	private static int count = IDGenerator.getRecordId();
 
 	public final Comparator<Record> DATE_ORDER = new Comparator<Record>() {
 		public int compare(Record r1, Record r2) {

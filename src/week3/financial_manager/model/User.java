@@ -9,11 +9,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import week3.financial_manager.utils.IdGenerator;
+import week3.financial_manager.utils.IDGenerator;
 
 public class User {
 
-	private static int count = IdGenerator.getUserId();
+	private static int count = IDGenerator.getUserId();
 
 	private final int id;
 	private final String name;

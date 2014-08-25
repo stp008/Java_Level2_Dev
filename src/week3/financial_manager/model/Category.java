@@ -2,11 +2,11 @@ package week3.financial_manager.model;
 
 import java.util.Map;
 
-import week3.financial_manager.utils.IdGenerator;
+import week3.financial_manager.utils.IDGenerator;
 
 public class Category {
 
-	private static int count = IdGenerator.getCategoryId();
+	private static int count = IDGenerator.getCategoryId();
 
 	private final int id;
 	

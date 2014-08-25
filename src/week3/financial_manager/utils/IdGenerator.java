@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class IdGenerator {
+public class IDGenerator {
 
 	private static Connection conn;
 	private static PreparedStatement prepared = null;
@@ -23,7 +23,7 @@ public class IdGenerator {
 
 	
 	public static void main(String[] args) {
-		System.out.println(IdGenerator.getUserId());
+		System.out.println(IDGenerator.getUserId());
 	}
 
 	
