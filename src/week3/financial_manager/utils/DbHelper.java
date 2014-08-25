@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DbHelper {
+public class DBHelper {
 
 	static {
 		try {
@@ -46,7 +46,7 @@ public class DbHelper {
 
 	public static void main(String[] args) {
 		try {
-			DbHelper.getConn();
+			DBHelper.getConn();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

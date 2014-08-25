@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Set;
 
-import week3.financial_manager.utils.DbHelper;
+import week3.financial_manager.utils.DBHelper;
 import week3.financial_manager.utils.ReadFile;
 
 public class DataStoreSQLImpl implements DataStore {
@@ -19,7 +19,7 @@ public class DataStoreSQLImpl implements DataStore {
 	
 	public DataStoreSQLImpl() {
 		try {
-			conn = DbHelper.getConn();
+			conn = DBHelper.getConn();
 		} catch (SQLException e) {
 			System.err.println("Ќе удалось установить соединение с базой данных");
 		}

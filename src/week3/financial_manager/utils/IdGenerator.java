@@ -15,7 +15,7 @@ public class IDGenerator {
 
 	static {
 		try {
-			conn = DbHelper.getConn();
+			conn = DBHelper.getConn();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
