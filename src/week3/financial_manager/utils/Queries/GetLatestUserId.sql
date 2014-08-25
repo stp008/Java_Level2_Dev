@@ -1,0 +1,1 @@
+SELECT id FROM Users ORDER BY id DESC limit 1

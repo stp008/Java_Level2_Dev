@@ -1,0 +1,1 @@
+SELECT id FROM Records ORDER BY id DESC limit 1

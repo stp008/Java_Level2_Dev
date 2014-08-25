@@ -1,0 +1,1 @@
+INSERT INTO accounts (user_id, balance, description) VALUES (?, ?, ?)

@@ -1,0 +1,1 @@
+INSERT INTO users (password, login, fname, sname, mname) VALUES (?, ?, ?, ?, ?)
