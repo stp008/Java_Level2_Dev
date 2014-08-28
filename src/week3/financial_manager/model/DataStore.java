@@ -18,12 +18,16 @@ public interface DataStore {
 
 	// If no records, return empty collection (not null)
 	Set<Record> getRecords(Account account);
+	
+	Set<Category> getCategories();
 
 	void addUser(User user);
 
 	void addAccount(User user, Account account);
 
 	void addRecord(Account account, Record record);
+	
+	void addCategory(Category category);
 
 	// return removed User or null if no such user
 	User removeUser(String name);
@@ -33,4 +37,6 @@ public interface DataStore {
 
 	// return null if no such record
 	Record removeRecord(Account from, Record record);
+	
+	Category removeCategory(String name);
 }

@@ -1,1 +1,1 @@
-INSERT INTO accounts (user_id, balance, description) VALUES (?, ?, ?)
+INSERT INTO accounts (id, user_id, balance, description) VALUES (?, ?, ?, ?)

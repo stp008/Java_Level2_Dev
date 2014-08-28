@@ -1,0 +1,1 @@
+SELECT id FROM Accounts ORDER BY id DESC limit 1

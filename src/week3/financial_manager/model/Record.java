@@ -5,7 +5,7 @@
 package week3.financial_manager.model;
 
 import java.util.Comparator;
-import java.util.Date;
+import java.sql.Date;
 
 import week1.financial_manager.commands.Tags;
 import week3.financial_manager.utils.IDGenerator;
@@ -26,14 +26,16 @@ public class Record implements Comparable<Record> {
 	private final double amount;
 	private final String description;
 	private final Tags tag;
+	private final Category category;
 
 	public Record(Account account, String description, double amount,
-			Date date, Tags tag) {
+			Date date, Tags tag, Category category) {
 		this.account = account;
 		this.description = description;
 		this.amount = amount;
 		this.date = date;
 		this.tag = tag;
+		this.category = category;
 		this.id = count++;
 	}
 
@@ -59,6 +61,10 @@ public class Record implements Comparable<Record> {
 
 	public Tags getTag() {
 		return tag;
+	}
+	
+	public Category getCategory() {
+		return category;
 	}
 
 	@Override

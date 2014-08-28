@@ -11,6 +11,7 @@ public class IDGenerator {
 	private static Connection conn;
 	private static PreparedStatement prepared = null;
 	private static ResultSet result = null;
+	private static final int DEFAULT_ID = 1;
 	private static final String PATH = "C:\\Users\\Just a man\\workspace\\java_level2\\src\\week3\\financial_manager\\utils\\Queries\\";
 
 	static {
@@ -25,9 +26,8 @@ public class IDGenerator {
 	public static void main(String[] args) {
 		System.out.println(IDGenerator.getUserId());
 	}
-
 	
-	public static int getUserId() {
+	public static int getUserId() {	
 		int id;
 		
 		try {
@@ -37,15 +37,17 @@ public class IDGenerator {
 			result.next();
 			id = Integer.valueOf(result.getString(1));
 			id++;
+			
+			prepared.close();
 		} catch (SQLException e) {
-			id = 0;
+			id = DEFAULT_ID;
 		}
 		
 		return id;
 	}
 
 	
-	public static int getAccountId() {
+	public static int getAccountId() {	
 		int id;
 		
 		try {
@@ -55,15 +57,17 @@ public class IDGenerator {
 			result.next();
 			id = Integer.valueOf(result.getString(1));
 			id++;
+			
+			prepared.close();
 		} catch (SQLException e) {
-			id = 0;
+			id = DEFAULT_ID;
 		}
 		
 		return id;
 	}
 
 	
-	public static int getRecordId() {
+	public static int getRecordId() {		
 		int id;
 		
 		try {
@@ -75,14 +79,16 @@ public class IDGenerator {
 			result.next();
 			id = Integer.valueOf(result.getString(1));
 			id++;
+			
+			prepared.close();
 		} catch (SQLException e) {
-			id = 0;
+			id = DEFAULT_ID;
 		}
 		
 		return id;
 	}
 
-	public static int getCategoryId() {
+	public static int getCategoryId() {	
 		int id;
 		try {
 			prepared = conn.prepareStatement(ReadFile.getQuery(PATH
@@ -93,11 +99,13 @@ public class IDGenerator {
 			result.next();
 			id = Integer.valueOf(result.getString(1));
 			id++;
+			
+			prepared.close();
 		} catch (SQLException e) {
-			id = 0;
+			id = DEFAULT_ID;
 		}
 		
 		return id;
-	}
+	}	
 
 }

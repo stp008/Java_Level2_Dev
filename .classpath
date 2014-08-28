@@ -14,7 +14,7 @@
 	<classpathentry kind="lib" path="C:/Users/Just a man/workspace/java_level2/gral-core-0.10.zip"/>
 	<classpathentry kind="lib" path="C:/Users/Just a man/workspace/java_level2/gral-examples-0.10.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Just a man/workspace/java_level2/gral-examples-0.10.zip"/>
-	<classpathentry kind="lib" path="C:/Users/Just a man/workspace/java_level2/sqlite-jdbc-3.8.5-pre1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Just a man/workspace/java_level2/VectorGraphics2D-0.9.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Just a man/workspace/java_level2/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

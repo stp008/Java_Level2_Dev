@@ -50,8 +50,8 @@ public class ModelImpl implements Model {
 		if (sum <= 0)
 			return false;
 		account.changeBalance(sum);
-		account.addRecord(new Record(account, "adding money", sum, new Date(),
-				Tags.PUT));
+		//account.addRecord(new Record(account, "adding money", sum, new Date(),
+				//Tags.PUT));
 		return true;
 	}
 
@@ -63,8 +63,8 @@ public class ModelImpl implements Model {
 		if (sum <= 0 || account.getBalance() < sum)
 			return false;
 		account.changeBalance(-sum);
-		account.addRecord(new Record(account, "withdrawing money", sum,
-				new Date(), Tags.WITHDRAW));
+		//account.addRecord(new Record(account, "withdrawing money", sum,
+				//new Date(), Tags.WITHDRAW));
 		return true;
 	}
 

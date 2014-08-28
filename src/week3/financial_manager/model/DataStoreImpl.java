@@ -68,4 +68,22 @@ public class DataStoreImpl implements DataStore {
 				.removeRecord(record);
 	}
 
+	@Override
+	public Set<Category> getCategories() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addCategory(Category category) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Category removeCategory(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

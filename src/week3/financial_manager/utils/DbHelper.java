@@ -5,11 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.sqlite.SQLiteConfig;
+
 public class DBHelper {
 
 	static {
 		try {
 			Class.forName("org.sqlite.JDBC");
+			SQLiteConfig config = new SQLiteConfig();  
+	        config.enforceForeignKeys(true);  
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
