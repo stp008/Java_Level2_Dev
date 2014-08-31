@@ -38,12 +38,12 @@ public class DataStoreImpl implements DataStore {
 
 	@Override
 	public void addUser(User user) {
-		users.put(user.getFullName(), user);
+		users.put(user.getLogin(), user);
 	}
 
 	@Override
 	public void addAccount(User user, Account account) {
-		users.get(user.getFullName()).addAccount(account);
+		users.get(user.getLogin()).addAccount(account);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class DataStoreImpl implements DataStore {
 	}
 
 	@Override
-	public Set<Category> getCategories() {
+	public Set<String> getCategoryNames() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -82,6 +82,12 @@ public class DataStoreImpl implements DataStore {
 
 	@Override
 	public Category removeCategory(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Category getCategory(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}

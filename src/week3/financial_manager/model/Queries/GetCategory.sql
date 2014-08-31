@@ -1,0 +1,1 @@
+SELECT * FROM categories WHERE name = ? limit 1

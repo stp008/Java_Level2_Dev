@@ -8,6 +8,11 @@ import java.sql.SQLException;
 
 public class IDGenerator {
 
+	/*private static int cachedUserID = 1;
+	private static int cachedAccountID = 1;
+	private static int cachedRecordID = 1;
+	private static int cachedCategoryID = 1;*/
+	
 	private static Connection conn;
 	private static PreparedStatement prepared = null;
 	private static ResultSet result = null;

@@ -13,8 +13,6 @@ import week3.financial_manager.utils.IDGenerator;
 
 public class Account {
 
-	private static int count = IDGenerator.getAccountId();
-
 	private final int id;
 	private final String description;
 	private final String owner;
@@ -22,9 +20,18 @@ public class Account {
 	private Map<Integer, Record> records;
 
 	public Account(String description, String owner) {
+		this.id = IDGenerator.getAccountId();
 		balance = 0;
 		this.description = description;
-		this.id = count++;
+		records = new HashMap<>();
+		this.owner = owner;
+	}
+	
+	public Account(int id, double balance, String description, String owner) {
+		if (id >= IDGenerator.getAccountId()) throw new RuntimeException("Invalid ID");
+		this.id = id;
+		balance = 0;
+		this.description = description;
 		records = new HashMap<>();
 		this.owner = owner;
 	}

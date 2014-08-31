@@ -9,6 +9,8 @@ import java.util.Set;
 public interface DataStore {
 	// return null if no such user
 	User getUser(String name);
+	
+	Category getCategory (String name);
 
 	// If no users, return empty collection (not null)
 	Set<String> getUserNames();
@@ -19,7 +21,7 @@ public interface DataStore {
 	// If no records, return empty collection (not null)
 	Set<Record> getRecords(Account account);
 	
-	Set<Category> getCategories();
+	Set<String> getCategoryNames();
 
 	void addUser(User user);
 
@@ -39,4 +41,5 @@ public interface DataStore {
 	Record removeRecord(Account from, Record record);
 	
 	Category removeCategory(String name);
+
 }

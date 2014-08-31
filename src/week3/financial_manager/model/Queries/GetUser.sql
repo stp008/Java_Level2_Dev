@@ -1,1 +1,1 @@
-SELECT * FROM users WHERE login = ?
+SELECT * FROM users WHERE login = ? limit 1

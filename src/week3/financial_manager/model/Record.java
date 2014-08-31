@@ -10,9 +10,7 @@ import java.sql.Date;
 import week1.financial_manager.commands.Tags;
 import week3.financial_manager.utils.IDGenerator;
 
-public class Record implements Comparable<Record> {
-
-	private static int count = IDGenerator.getRecordId();
+class Record implements Comparable<Record> {
 
 	public final Comparator<Record> DATE_ORDER = new Comparator<Record>() {
 		public int compare(Record r1, Record r2) {
@@ -30,13 +28,25 @@ public class Record implements Comparable<Record> {
 
 	public Record(Account account, String description, double amount,
 			Date date, Tags tag, Category category) {
+		this.id = IDGenerator.getRecordId();
 		this.account = account;
 		this.description = description;
 		this.amount = amount;
 		this.date = date;
 		this.tag = tag;
 		this.category = category;
-		this.id = count++;
+	}
+	
+	public Record(int id, Account account, String description, double amount,
+			Date date, Tags tag, Category category) {
+		if (id >= IDGenerator.getRecordId()) throw new RuntimeException("Invalid ID");
+		this.id = id;
+		this.account = account;
+		this.description = description;
+		this.amount = amount;
+		this.date = date;
+		this.tag = tag;
+		this.category = category;
 	}
 
 	public Account getAccount() {

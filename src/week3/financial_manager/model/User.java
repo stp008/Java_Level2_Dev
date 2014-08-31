@@ -13,8 +13,6 @@ import week3.financial_manager.utils.IDGenerator;
 
 public class User {
 
-	private static int count = IDGenerator.getUserId();
-
 	private final int id;
 	private final String name;
 	private final String fname;
@@ -24,7 +22,18 @@ public class User {
 	private Map<Integer, Account> accounts;
 
 	public User(String name, String password, String fname, String sname, String mname) {
-		this.id = count++;
+		this.id = IDGenerator.getUserId();
+		this.name = name;
+		this.fname = fname;
+		this.sname = sname;
+		this.mname = mname;
+		this.password = password;
+		this.accounts = new HashMap<>();
+	}
+	
+	public User(int id, String name, String password, String fname, String sname, String mname) {
+		if (id >= IDGenerator.getUserId()) throw new RuntimeException("Invalid ID");
+		this.id = id;
 		this.name = name;
 		this.fname = fname;
 		this.sname = sname;
