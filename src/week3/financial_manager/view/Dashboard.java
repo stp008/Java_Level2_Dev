@@ -63,7 +63,7 @@ public class Dashboard {
 
 	/**
 	 * Create the application.
-	 */
+	 * 	 */
 	public Dashboard() {
 		initialize();
 		this.frame.setVisible(true);
