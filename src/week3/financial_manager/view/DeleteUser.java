@@ -14,12 +14,16 @@ import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class DeleteUser {
+import week3.financial_manager.controller.Controller;
+
+public class DeleteUser implements View {
 
 	private JFrame frame;
 	private JTextField textField;
 	private JLabel lblNewLabel;
 	private JButton btnNewButton;
+	
+	private Controller controller;
 
 	/**
 	 * Launch the application.
@@ -75,6 +79,11 @@ public class DeleteUser {
 		
 		btnNewButton = new JButton("\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F");
 		frame.getContentPane().add(btnNewButton);
+	}
+	
+	@Override
+	public void addController(Controller controller) {
+		this.controller = controller;
 	}
 
 }

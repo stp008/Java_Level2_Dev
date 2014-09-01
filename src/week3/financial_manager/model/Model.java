@@ -23,8 +23,16 @@ public interface Model {
 	public boolean createAccount(String description);
 
 	public boolean deleteAccount(Account account);
+	
+	public boolean createCategory(Category category);
+	
+	public boolean deleteCategory(String name);
+	
+	public Set<String> getCategoryNames();
 
 	public Account getAccount(int id);
+	
+	public Category getCategory (String name);
 
 	public Set<Account> getUserAccounts();
 

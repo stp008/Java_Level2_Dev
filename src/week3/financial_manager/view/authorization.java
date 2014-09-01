@@ -17,7 +17,9 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class Authorization {
+import week3.financial_manager.controller.Controller;
+
+public class Authorization implements View {
 
 	private JFrame frmFinancialManager;
 	private JTextField textField_1;
@@ -26,6 +28,7 @@ public class Authorization {
 	private JLabel lblNewLabel = new JLabel(
 			"\u041F\u0430\u0440\u043E\u043B\u044C");
 	private JPasswordField passwordField;
+	private Controller controller;
 
 	/**
 	 * Launch the application.
@@ -127,6 +130,11 @@ public class Authorization {
 			label.setText("Неправильное имя.");
 			lblNewLabel_2.setText("Неправильный пароль");
 		}
+	}
+
+	@Override
+	public void addController(Controller controller) {
+		this.controller = controller;
 	}
 
 }

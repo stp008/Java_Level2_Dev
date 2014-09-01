@@ -14,9 +14,13 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class DeleteAccount {
+import week3.financial_manager.controller.Controller;
+
+public class DeleteAccount implements View {
 
 	private JFrame frame;
+	
+	private Controller controller;
 
 	/**
 	 * Launch the application.
@@ -69,6 +73,11 @@ public class DeleteAccount {
 		
 		JButton btnNewButton = new JButton("\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0441\u0447\u0435\u0442");
 		frame.getContentPane().add(btnNewButton);
+	}
+	
+	@Override
+	public void addController(Controller controller) {
+		this.controller = controller;
 	}
 
 }

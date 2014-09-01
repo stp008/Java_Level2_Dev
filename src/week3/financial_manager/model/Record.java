@@ -10,7 +10,7 @@ import java.sql.Date;
 import week1.financial_manager.commands.Tags;
 import week3.financial_manager.utils.IDGenerator;
 
-class Record implements Comparable<Record> {
+public class Record implements Comparable<Record> {
 
 	public final Comparator<Record> DATE_ORDER = new Comparator<Record>() {
 		public int compare(Record r1, Record r2) {

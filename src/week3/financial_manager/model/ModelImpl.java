@@ -112,4 +112,28 @@ public class ModelImpl implements Model {
 		return currentUser.getAccount(id);
 	}
 
+	@Override
+	public boolean createCategory(Category category) {
+		data.addCategory(category);
+		if (category == null) return false;
+		return true;
+	}
+
+	@Override
+	public boolean deleteCategory(String name) {
+		Category category = data.removeCategory(name);
+		if (category == null) return false;
+		return true;
+	}
+
+	@Override
+	public Set<String> getCategoryNames() {
+		return data.getCategoryNames();
+	}
+
+	@Override
+	public Category getCategory(String name) {
+		return data.getCategory(name);
+	}
+
 }

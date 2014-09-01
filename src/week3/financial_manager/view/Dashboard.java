@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.util.Set;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
@@ -31,11 +33,19 @@ import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
+import week1.financial_manager.commands.Tags;
+import week3.financial_manager.controller.Controller;
+import week3.financial_manager.model.Account;
+import week3.financial_manager.model.Category;
+import week3.financial_manager.model.DataStore;
+import week3.financial_manager.model.DataStoreSQLImpl;
+import week3.financial_manager.model.User;
 import net.miginfocom.swing.MigLayout;
 
-public class Dashboard {
+public class Dashboard implements View {
 
 	private JFrame frame;
+	private Controller controller;
 
 	/**
 	 * Launch the application.
@@ -45,11 +55,9 @@ public class Dashboard {
 	 * @throws InstantiationException
 	 * @throws ClassNotFoundException
 	 */
-	public static void main(String[] args) throws ClassNotFoundException,
-			InstantiationException, IllegalAccessException,
-			UnsupportedLookAndFeelException {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 		UIManager
-				.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");				
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -104,8 +112,17 @@ public class Dashboard {
 		tree.setShowsRootHandles(true);
 		tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode(
 				"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438") {
-			{
-				add(new DefaultMutableTreeNode(
+			{	
+				
+				DataStore st = new DataStoreSQLImpl();
+				
+				Set<String> names = st.getCategoryNames();
+				
+				for (String name : names) {
+					add(new DefaultMutableTreeNode(name));
+				}
+				
+				/*add(new DefaultMutableTreeNode(
 						"\u041C\u0430\u0448\u0438\u043D\u0430"));
 				add(new DefaultMutableTreeNode("\u0414\u0430\u0447\u0430"));
 				add(new DefaultMutableTreeNode(
@@ -113,7 +130,7 @@ public class Dashboard {
 				add(new DefaultMutableTreeNode(
 						"\u0420\u0430\u0431\u043E\u0442\u0430"));
 				add(new DefaultMutableTreeNode(
-						"\u0412\u0441\u0435 \u0442\u0440\u0430\u043D\u0437\u0430\u043A\u0446\u0438\u0438"));
+						"\u0412\u0441\u0435 \u0442\u0440\u0430\u043D\u0437\u0430\u043A\u0446\u0438\u0438"));*/
 			}
 		}));
 		scrollPane_1.setViewportView(tree);
@@ -268,6 +285,9 @@ public class Dashboard {
 
 		JMenu menu = new JMenu("\u0421\u0447\u0435\u0442\u0430");
 		menuBar.add(menu);
+		
+		JMenuItem menuItem_2 = new JMenuItem("\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043E\u043F\u0435\u0440\u0430\u0446\u0438\u044E");
+		menu.add(menuItem_2);
 
 		JMenuItem menuItem = new JMenuItem(
 				"\u0421\u043E\u0437\u0434\u0430\u0442\u044C");
@@ -276,18 +296,6 @@ public class Dashboard {
 		JMenuItem menuItem_1 = new JMenuItem(
 				"\u0423\u0434\u0430\u043B\u0438\u0442\u044C");
 		menu.add(menuItem_1);
-
-		JMenu menu_1 = new JMenu(
-				"\u0422\u0440\u0430\u043D\u0437\u0430\u043A\u0446\u0438\u0438");
-		menuBar.add(menu_1);
-
-		JMenuItem menuItem_2 = new JMenuItem(
-				"\u0421\u043E\u0437\u0434\u0430\u0442\u044C");
-		menu_1.add(menuItem_2);
-
-		JMenuItem menuItem_3 = new JMenuItem(
-				"\u0423\u0434\u0430\u043B\u0438\u0442\u044C");
-		menu_1.add(menuItem_3);
 
 		JMenu menu_2 = new JMenu(
 				"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438");
@@ -336,5 +344,10 @@ public class Dashboard {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+	}
+	
+	@Override
+	public void addController(Controller controller) {
+		this.controller = controller;
 	}
 }

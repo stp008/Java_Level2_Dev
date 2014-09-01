@@ -14,10 +14,13 @@ import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class CreateAccount {
+import week3.financial_manager.controller.Controller;
+
+public class CreateAccount implements View {
 
 	private JFrame frame;
 	private JTextField textField;
+	private Controller controller;
 
 	/**
 	 * Launch the application.
@@ -74,6 +77,11 @@ public class CreateAccount {
 		
 		JButton button = new JButton("\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u0441\u0447\u0435\u0442");
 		frame.getContentPane().add(button);
+	}
+
+	@Override
+	public void addController(Controller controller) {
+		this.controller = controller;
 	}
 
 }

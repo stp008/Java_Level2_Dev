@@ -14,9 +14,13 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class DeleteCategory {
+import week3.financial_manager.controller.Controller;
+
+public class DeleteCategory implements View {
 
 	private JFrame frame;
+	
+	private Controller controller;
 
 	/**
 	 * Launch the application.
@@ -70,6 +74,11 @@ public class DeleteCategory {
 		
 		JButton btnNewButton = new JButton("\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E");
 		frame.getContentPane().add(btnNewButton);
+	}
+	
+	@Override
+	public void addController(Controller controller) {
+		this.controller = controller;
 	}
 
 }
