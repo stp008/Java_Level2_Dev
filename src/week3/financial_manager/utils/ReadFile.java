@@ -1,16 +1,19 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 package week3.financial_manager.utils;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-
 public class ReadFile {
-	
+
 	public static String getQuery(String filename) {
-		
+
 		String content = null;
-		
+
 		File file = new File(filename);
 
 		try {
@@ -25,5 +28,5 @@ public class ReadFile {
 
 		return content;
 	}
-	
+
 }

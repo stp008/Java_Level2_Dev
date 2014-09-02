@@ -1,3 +1,7 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 package week3.financial_manager.model;
 
 import java.sql.Connection;
@@ -10,7 +14,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import week1.financial_manager.commands.Tags;
+import week3.financial_manager.commands.Tags;
 import week3.financial_manager.utils.DBHelper;
 import week3.financial_manager.utils.IDGenerator;
 import week3.financial_manager.utils.ReadFile;

@@ -1,17 +1,21 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 package week5.chat;
 
 public class User {
 	private String login;
 	private String password;
 	private boolean available = false;
-	private final int id;
+	private final int creatorId;
 	private boolean authorized;
 
 	public User(String login, String password, int id) {
 		super();
 		this.login = login;
 		this.password = password;
-		this.id = id;
+		this.creatorId = id;
 		this.authorized = false;
 	}
 
@@ -28,7 +32,7 @@ public class User {
 		this.login = login;
 		return login;
 	}
-	
+
 	public String getLogin() {
 		return login;
 	}
@@ -37,13 +41,13 @@ public class User {
 		this.password = password;
 		return password;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
 
 	public int getId() {
-		return id;
+		return creatorId;
 	}
 
 	public boolean isAvailable() {

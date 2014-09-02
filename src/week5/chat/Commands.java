@@ -6,8 +6,8 @@ package week5.chat;
 
 public enum Commands {
 	LOGIN, CREATE, PRIVATE, SEND, HELP, EXIT, BLANK; // for
-																													// illegal
-																													// commands
+														// illegal
+														// commands
 
 	public static String about() {
 		StringBuilder string = new StringBuilder();

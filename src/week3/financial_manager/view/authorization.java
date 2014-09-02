@@ -1,3 +1,7 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 package week3.financial_manager.view;
 
 import java.awt.Color;

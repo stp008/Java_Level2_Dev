@@ -1,3 +1,7 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 package week5.chat;
 
 import java.net.ServerSocket;
@@ -16,7 +20,7 @@ public class Server {
 	private static final int PORT = 19000;
 	private static int counter = 0;
 
-	private final ConcurrentMap<Integer, User> users = new ConcurrentHashMap<>();
+	private final ConcurrentMap<String, User> users = new ConcurrentHashMap<>();
 	private final ConcurrentMap<Integer, Boolean> authorized = new ConcurrentHashMap<>();
 
 	// список обработчиков для клиентов
@@ -70,7 +74,7 @@ public class Server {
 		int destination = privateMessage.getTo();
 		String message = privateMessage.getMessage();
 		String from = privateMessage.getFrom().getLogin();
-		
+
 		log.info("Private message sent to Handler[" + destination + "]");
 
 		for (ClientHandler handler : handlers) {

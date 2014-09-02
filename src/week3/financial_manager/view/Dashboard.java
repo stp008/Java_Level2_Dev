@@ -1,3 +1,7 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 package week3.financial_manager.view;
 
 import java.awt.Component;
@@ -55,9 +59,11 @@ public class Dashboard implements View {
 	 * @throws InstantiationException
 	 * @throws ClassNotFoundException
 	 */
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+	public static void main(String[] args) throws ClassNotFoundException,
+			InstantiationException, IllegalAccessException,
+			UnsupportedLookAndFeelException {
 		UIManager
-				.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");				
+				.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -71,7 +77,7 @@ public class Dashboard implements View {
 
 	/**
 	 * Create the application.
-	 * 	 */
+	 * */
 	public Dashboard() {
 		initialize();
 		this.frame.setVisible(true);
@@ -112,25 +118,28 @@ public class Dashboard implements View {
 		tree.setShowsRootHandles(true);
 		tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode(
 				"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438") {
-			{	
-				
+			{
+
 				DataStore st = new DataStoreSQLImpl();
-				
+
 				Set<String> names = st.getCategoryNames();
-				
+
 				for (String name : names) {
 					add(new DefaultMutableTreeNode(name));
 				}
-				
-				/*add(new DefaultMutableTreeNode(
-						"\u041C\u0430\u0448\u0438\u043D\u0430"));
-				add(new DefaultMutableTreeNode("\u0414\u0430\u0447\u0430"));
-				add(new DefaultMutableTreeNode(
-						"\u041A\u0432\u0430\u0440\u0442\u0438\u0440\u0430"));
-				add(new DefaultMutableTreeNode(
-						"\u0420\u0430\u0431\u043E\u0442\u0430"));
-				add(new DefaultMutableTreeNode(
-						"\u0412\u0441\u0435 \u0442\u0440\u0430\u043D\u0437\u0430\u043A\u0446\u0438\u0438"));*/
+
+				/*
+				 * add(new DefaultMutableTreeNode(
+				 * "\u041C\u0430\u0448\u0438\u043D\u0430")); add(new
+				 * DefaultMutableTreeNode("\u0414\u0430\u0447\u0430")); add(new
+				 * DefaultMutableTreeNode(
+				 * "\u041A\u0432\u0430\u0440\u0442\u0438\u0440\u0430")); add(new
+				 * DefaultMutableTreeNode(
+				 * "\u0420\u0430\u0431\u043E\u0442\u0430")); add(new
+				 * DefaultMutableTreeNode(
+				 * "\u0412\u0441\u0435 \u0442\u0440\u0430\u043D\u0437\u0430\u043A\u0446\u0438\u0438"
+				 * ));
+				 */
 			}
 		}));
 		scrollPane_1.setViewportView(tree);
@@ -285,8 +294,9 @@ public class Dashboard implements View {
 
 		JMenu menu = new JMenu("\u0421\u0447\u0435\u0442\u0430");
 		menuBar.add(menu);
-		
-		JMenuItem menuItem_2 = new JMenuItem("\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043E\u043F\u0435\u0440\u0430\u0446\u0438\u044E");
+
+		JMenuItem menuItem_2 = new JMenuItem(
+				"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043E\u043F\u0435\u0440\u0430\u0446\u0438\u044E");
 		menu.add(menuItem_2);
 
 		JMenuItem menuItem = new JMenuItem(
@@ -345,7 +355,7 @@ public class Dashboard implements View {
 			}
 		});
 	}
-	
+
 	@Override
 	public void addController(Controller controller) {
 		this.controller = controller;

@@ -1,3 +1,7 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 /*
  * GRAL: GRAphing Library for Java(R)
  *

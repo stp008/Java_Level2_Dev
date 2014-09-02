@@ -1,3 +1,7 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 package week3.financial_manager.view;
 
 import java.awt.Component;
@@ -10,10 +14,11 @@ import javax.swing.UIManager;
 import week3.financial_manager.controller.Controller;
 
 @SuppressWarnings("serial")
-public class TransactionCellRenderer extends DefaultListCellRenderer implements View {
+public class TransactionCellRenderer extends DefaultListCellRenderer implements
+		View {
 
 	JTextArea area;
-	
+
 	private Controller controller;
 
 	@Override
@@ -52,7 +57,7 @@ public class TransactionCellRenderer extends DefaultListCellRenderer implements 
 		// If the value is a color, set the cell's background to that color.
 		return area;
 	}
-	
+
 	@Override
 	public void addController(Controller controller) {
 		this.controller = controller;

@@ -1,3 +1,7 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 package week5.chat;
 
 import java.io.BufferedReader;
@@ -5,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 
 import org.slf4j.Logger;
@@ -21,12 +24,12 @@ class ClientHandler extends Thread {
 	private BufferedReader in;
 	private PrintWriter out;
 
-	private final ConcurrentMap<Integer, User> users;
+	private final ConcurrentMap<String, User> users;
 	private final ConcurrentMap<Integer, Boolean> authorized;
 
 	User user;
 
-	private boolean publicUse = false;
+	private boolean isPublic = false;
 
 	private PrivateMessage privateResponse;
 	private PublicMessage publicResponse;
@@ -35,7 +38,7 @@ class ClientHandler extends Thread {
 	private int id;
 
 	public ClientHandler(Server server, Socket socket, int counter,
-			ConcurrentMap<Integer, User> users,
+			ConcurrentMap<String, User> users,
 			ConcurrentMap<Integer, Boolean> authorized) throws Exception {
 		this.authorized = authorized;
 		this.users = users;
@@ -62,7 +65,7 @@ class ClientHandler extends Thread {
 			while ((request = in.readLine()) != null) {
 				log.info("Handler[" + id + "]<< " + request);
 				process(request);
-				if (publicUse) {
+				if (isPublic) {
 					server.broadcastPublic(publicResponse);
 				} else {
 					server.broadcastPrivate(privateResponse);
@@ -70,12 +73,19 @@ class ClientHandler extends Thread {
 			}
 		} catch (IOException e) {
 			log.error("Failed to read from socket");
+		} finally {
+			try {
+				in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			out.close();
 		}
 	}
 
 	private void process(String request) {
 		String response = "";
-
+		int privateId = id;
 		String command = request;
 		String[] commands = command.split(" ");
 		Commands enum_command;
@@ -88,62 +98,59 @@ class ClientHandler extends Thread {
 
 		try {
 			switch (enum_command) {
-			
+
 			case HELP:
-				publicUse = false;
+				isPublic = false;
 				response = Commands.about();
-				sendPrivate(user, id, response);
 				break;
-				
+
 			case CREATE:
-				publicUse = false;
+				isPublic = false;
 				if (createUser(commands[1], commands[2])) {
 					response = "Пользователь успешно создан.";
 				} else {
 					response = "Пользователь не был создан.";
 				}
-				sendPrivate(user, id, response);
 				break;
 
 			case LOGIN:
-				publicUse = false;
+				isPublic = false;
 				if (login(commands[1], commands[2])) {
 					authorized.put(id, Boolean.TRUE);
 					response = "Вы успешно вошли в чат.";
 				} else {
 					response = "Неправильный пользователь или пароль.";
 				}
-				sendPrivate(user, id, response);
 				break;
 
 			case PRIVATE:
-				publicUse = false;
+				isPublic = false;
 				if (isAuthorized()) {
 					for (int i = 2; i < commands.length; i++) {
 						response += commands[i] + " ";
 					}
-					sendPrivate(user, Integer.valueOf(commands[1]), response);
+					privateId = users.get(commands[1]).getId();
 				} else {
 					response = "Вы не авторизованы.";
 				}
-				sendPrivate(user, id, response);
+
 				break;
 
 			case SEND:
-				publicUse = true;
 				if (isAuthorized()) {
+					isPublic = true;
 					for (int i = 1; i < commands.length; i++) {
 						response += commands[i] + " ";
 					}
 				} else {
+					isPublic = false;
 					response = "Вы не авторизованы.";
-
 				}
-				sendPublic(user, response);
+
 				break;
 
 			case EXIT:
-				publicUse = false;
+				isPublic = false;
 				log.info("Client disconnected: "
 						+ client.getInetAddress().toString() + ":"
 						+ client.getPort());
@@ -151,16 +158,21 @@ class ClientHandler extends Thread {
 				break;
 
 			case BLANK:
-				publicUse = false;
+				isPublic = false;
 				response = "Комманда не существует.";
-				sendPrivate(user, id, response);
 				break;
 			}
 
 		} catch (Exception e) {
-			publicUse = false;
+			isPublic = false;
 			response = "Неправильная комманда. Повторите ввод.";
 			sendPrivate(user, id, response);
+		}
+
+		if (isPublic) {
+			sendPublic(user, response);
+		} else {
+			sendPrivate(user, privateId, response);
 		}
 
 	}
@@ -168,32 +180,21 @@ class ClientHandler extends Thread {
 	private boolean createUser(String name, String password) {
 		if (users.containsKey(name))
 			return false;
-		user.setLogin(name);
-		user.setPassword(password);
-		users.put(id, user);
+
+		User newUser = new User(name, password, id);
+
+		newUser.setLogin(name);
+		newUser.setPassword(password);
+		users.put(newUser.getLogin(), newUser);
 		return true;
 	}
 
 	private boolean login(String name, String password) {
-		Set<Integer> userId = users.keySet();
-		int foundId = -1;
-		if (!user.getLogin().equals(name)) {
-			for (Integer elem : userId) {
-				if (users.get(elem).getLogin().equals(name)
-						&& users.get(elem).getPassword().equals(password)) {
-					foundId = elem;
-					break;
-				}
-			}
-		} else {
-			if (!user.getPassword().equals(password)) {
-				return false;
-			}
-		}
-
-		if (foundId != -1)
-			user = users.get(foundId);
-
+		if (!users.containsKey(name))
+			return false;
+		user = users.get(name);
+		if (!user.getPassword().equals(password))
+			return false;
 		user.setAuthorized(true);
 		authorized.put(user.getId(), true);
 		return true;

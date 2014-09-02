@@ -7,7 +7,7 @@ package week3.financial_manager.model;
 import java.util.Comparator;
 import java.sql.Date;
 
-import week1.financial_manager.commands.Tags;
+import week3.financial_manager.commands.Tags;
 import week3.financial_manager.utils.IDGenerator;
 
 public class Record implements Comparable<Record> {

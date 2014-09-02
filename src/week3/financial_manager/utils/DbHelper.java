@@ -1,3 +1,7 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 package week3.financial_manager.utils;
 
 import java.sql.Connection;
@@ -12,8 +16,8 @@ public class DBHelper {
 	static {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			SQLiteConfig config = new SQLiteConfig();  
-	        config.enforceForeignKeys(true);  
+			SQLiteConfig config = new SQLiteConfig();
+			config.enforceForeignKeys(true);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

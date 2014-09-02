@@ -1,6 +1,9 @@
+/**
+ * @author clack008@gmail.com
+ */
+
 package week3.financial_manager.model;
 
-import java.util.Map;
 
 import week3.financial_manager.utils.IDGenerator;
 

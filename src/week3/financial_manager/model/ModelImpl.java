@@ -4,10 +4,8 @@
 
 package week3.financial_manager.model;
 
-import java.util.Date;
 import java.util.Set;
 
-import week1.financial_manager.commands.Tags;
 
 public class ModelImpl implements Model {
 	private final DataStore data;
