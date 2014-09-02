@@ -8,73 +8,85 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-
-
 public class Client {
 
-    protected static Logger log = LoggerFactory.getLogger(Client.class);
+	protected static Logger log = LoggerFactory.getLogger(Client.class);
 
-    public static final int PORT = 19000;
-    public static final String HOST = "localhost";
-    private static final String EXIT = "exit";
-    
-    public static void main(String[] args) throws Exception {
+	public static final int PORT = 19000;
+	public String HOST = "localhost";
+	private static final String EXIT = "exit";
 
-        Client client = new Client();
-        client.startClient();
+	public static void main(String[] args) throws Exception {
+		Client client;
+		if (args.length != 0) {
+			client = new Client(args[0]);
+		} else {
+			client = new Client();
+		}
+		client.startClient();
 
-    }
+	}
 
-    public void startClient() {
-        Socket socket = null;
-        BufferedReader in = null;
-        try {
-            socket = new Socket(HOST, PORT);
-            ConsoleThread console = new ConsoleThread(socket);
-            console.start();
+	public Client() {
+		super();
+	}
 
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+	public Client(String host) {
+		super();
+		this.HOST = host;
+	}
 
-            String line = null;
-            while ((line = in.readLine()) != null) {
-                System.out.println(">> " + line);
-            }
+	public void startClient() {
+		Socket socket = null;
+		BufferedReader in = null;
+		try {
+			socket = new Socket(HOST, PORT);
+			ConsoleThread console = new ConsoleThread(socket);
+			console.start();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+			in = new BufferedReader(new InputStreamReader(
+					socket.getInputStream()));
 
-    public void send(String message) {
+			String line = null;
+			while ((line = in.readLine()) != null) {
+				System.out.println(">> " + line);
+			}
 
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    class ConsoleThread extends Thread {
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter out;
+	public void send(String message) {
 
-        public ConsoleThread(Socket socket) throws Exception {
-            out = new PrintWriter(socket.getOutputStream());
-        }
+	}
 
-        @Override
-        public void run() {
-            try {
-                String line;
-                while ((line = console.readLine()) != null) {
-                    if (EXIT.equalsIgnoreCase(line)) {
-                        log.info("Closing chat");
-                        break;
-                    }
-                    out.println(line);
-                    out.flush();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } 
-        }
-        
+	class ConsoleThread extends Thread {
+		BufferedReader console = new BufferedReader(new InputStreamReader(
+				System.in));
+		PrintWriter out;
 
-    }
+		public ConsoleThread(Socket socket) throws Exception {
+			out = new PrintWriter(socket.getOutputStream());
+		}
+
+		@Override
+		public void run() {
+			try {
+				String line;
+				while ((line = console.readLine()) != null) {
+					if (EXIT.equalsIgnoreCase(line)) {
+						log.info("Closing chat");
+						break;
+					}
+					out.println(line);
+					out.flush();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
 
 }
