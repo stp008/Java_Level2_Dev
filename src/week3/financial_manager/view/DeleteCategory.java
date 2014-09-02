@@ -28,7 +28,7 @@ public class DeleteCategory implements View {
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
 	 * @throws ClassNotFoundException 
-	 */
+	 */ 
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 		UIManager
 		.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");

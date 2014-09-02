@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import java.awt.Toolkit;
 import java.awt.GridLayout;
 
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -18,7 +19,7 @@ import week3.financial_manager.controller.Controller;
 
 public class CreateAccount implements View {
 
-	private JFrame frame;
+	private JDialog frame;
 	private JTextField textField;
 	private Controller controller;
 
@@ -55,12 +56,12 @@ public class CreateAccount implements View {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JDialog();
 		frame.setResizable(false);
 		frame.setTitle("\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u0441\u0447\u0435\u0442");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Just a man\\Desktop\\1399996127_Customer_Male_Light.png"));
 		frame.setBounds(100, 100, 370, 231);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(4, 1, 0, 0));
 		
 		JLabel label = new JLabel("\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435");
