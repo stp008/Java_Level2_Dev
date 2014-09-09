@@ -2,13 +2,14 @@
  * @author clack008@gmail.com
  */
 
-package week5.chat;
+package week6.chat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
 import org.slf4j.Logger;
@@ -16,10 +17,12 @@ import org.slf4j.LoggerFactory;
 
 class ClientHandler extends Thread {
 
-	private ServerWeek5 server;
+	private Server server;
 	private Socket client;
 
-	protected static Logger log = LoggerFactory.getLogger(ClientWeek5.class);
+	private final List<ClientHandler> handlers;
+
+	protected static Logger log = LoggerFactory.getLogger(Client.class);
 
 	private BufferedReader in;
 	private PrintWriter out;
@@ -37,9 +40,11 @@ class ClientHandler extends Thread {
 	// номер, чтобы различать потоки
 	private int id;
 
-	public ClientHandler(ServerWeek5 server, Socket socket, int counter,
+	public ClientHandler(Server server, Socket socket, int counter,
 			ConcurrentMap<String, User> users,
-			ConcurrentMap<Integer, Boolean> authorized) throws Exception {
+			ConcurrentMap<Integer, Boolean> authorized,
+			List<ClientHandler> handlers) throws Exception {
+		this.handlers = handlers;
 		this.authorized = authorized;
 		this.users = users;
 		this.server = server;
@@ -61,16 +66,28 @@ class ClientHandler extends Thread {
 
 		// В отдельном потоке ждем данных от клиента
 		try {
+			handlers.add(this);
+			sendPrivate(user, user.getId(),
+					"Соединение с сервером успешно установлено.");
+			server.broadcastPrivate(privateResponse);
 			String request = null;
 			while ((request = in.readLine()) != null) {
-				log.info("Handler[" + id + "]<< " + request);
 				process(request);
+				if (ClientHandler.interrupted()) {
+					System.out.println("Поток прерван");
+					server.broadcastPrivate(privateResponse);
+					client.close();
+					return;
+				}
+
+				log.info("Handler[" + id + "]<< " + request);
 				if (isPublic) {
 					server.broadcastPublic(publicResponse);
 				} else {
 					server.broadcastPrivate(privateResponse);
 				}
 			}
+
 		} catch (IOException e) {
 			log.error("Failed to read from socket");
 		} finally {
@@ -151,10 +168,12 @@ class ClientHandler extends Thread {
 
 			case EXIT:
 				isPublic = false;
+				handlers.remove(this);
+				Thread.currentThread().interrupt();
 				log.info("Client disconnected: "
 						+ client.getInetAddress().toString() + ":"
 						+ client.getPort());
-				client.close();
+				response = "До свидания!";
 				break;
 
 			case BLANK:

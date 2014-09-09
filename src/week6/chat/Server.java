@@ -2,7 +2,7 @@
  * @author clack008@gmail.com
  */
 
-package week5.chat;
+package week6.chat;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,15 +21,33 @@ public class Server {
 	protected static Logger log = LoggerFactory.getLogger("ChatServer");
 	private static final int PORT = 19000;
 	private static int counter = 0;
+	private int CLIENT_LIMIT = 3;
 
 	private final ConcurrentMap<String, User> users = new ConcurrentHashMap<>();
 	private final ConcurrentMap<Integer, Boolean> authorized = new ConcurrentHashMap<>();
 
 	// список обработчиков для клиентов
 	private List<ClientHandler> handlers = new ArrayList<>();
+	
+	ExecutorService service;
+
+	public Server(Integer clientLimit) {
+		this.CLIENT_LIMIT = clientLimit;
+		service = Executors.newFixedThreadPool(CLIENT_LIMIT);
+	}
+
+	public Server() {
+		service = Executors.newFixedThreadPool(CLIENT_LIMIT);
+	}
 
 	public static void main(String[] args) throws Exception {
-		Server server = new Server();
+		Server server;
+		if (args.length > 0 && args[0].matches("\\d+")) {
+			//server = new Server(Integer.valueOf(args[0]));
+			server = new Server();
+		} else {
+			server = new Server();
+		}
 		server.startServer();
 	}
 
@@ -46,11 +66,13 @@ public class Server {
 
 			// создаем обработчик
 			ClientHandler handler = new ClientHandler(this, socket, clientId,
-					users, authorized);
+					users, authorized, handlers);
 			authorized.put(clientId, Boolean.FALSE);
 			counter++;
-			handlers.add(handler);
-			handler.start();
+			
+			service.execute(handler);
+			//handlers.add(handler);
+			//handler.start();
 		}
 	}
 

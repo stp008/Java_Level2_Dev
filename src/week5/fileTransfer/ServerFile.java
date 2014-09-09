@@ -13,7 +13,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Server {
+public class ServerFile {
 
 	private ServerSocket serverSocket;
 	File file;
@@ -31,7 +31,7 @@ public class Server {
 			fileName = args[0];
 		}
 
-		Server server = new Server();
+		ServerFile server = new ServerFile();
 		server.start(fileName);
 	}
 

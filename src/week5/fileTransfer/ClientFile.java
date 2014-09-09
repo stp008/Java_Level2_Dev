@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Client {
+public class ClientFile {
 
 	private Socket socket;
 	private FileOutputStream fos;
@@ -34,7 +34,7 @@ public class Client {
 			host = args[1];
 		}
 
-		Client client = new Client();
+		ClientFile client = new ClientFile();
 		client.start(host, fileName);
 	}
 

@@ -13,30 +13,30 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class Client {
+public class ClientWeek5 {
 
-	protected static Logger log = LoggerFactory.getLogger(Client.class);
+	protected static Logger log = LoggerFactory.getLogger(ClientWeek5.class);
 
 	public static final int PORT = 19000;
 	public String HOST = "localhost";
 	private static final String EXIT = "EXIT";
 
 	public static void main(String[] args) throws Exception {
-		Client client;
+		ClientWeek5 client;
 		if (args.length != 0) {
-			client = new Client(args[0]);
+			client = new ClientWeek5(args[0]);
 		} else {
-			client = new Client();
+			client = new ClientWeek5();
 		}
 		client.startClient();
 
 	}
 
-	public Client() {
+	public ClientWeek5() {
 		super();
 	}
 
-	public Client(String host) {
+	public ClientWeek5(String host) {
 		super();
 		this.HOST = host;
 	}
