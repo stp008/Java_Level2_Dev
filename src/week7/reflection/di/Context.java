@@ -204,6 +204,7 @@ public class Context {
 
     private void processAnnotation(Class clazz, Object instance) throws Exception {
         Field[] fields = clazz.getDeclaredFields();
+        Method[] methods = clazz.getDeclaredMethods();
         for (Field field : fields) {
             if (field.isAnnotationPresent(Auto.class)) {
                 Auto auto = field.getAnnotation(Auto.class);
@@ -220,6 +221,17 @@ public class Context {
                     //field.set(instance, obj);
                 }
             }
+        }
+        
+        for (Method method : methods) {
+        	if (method.isAnnotationPresent(PostConstruct.class)) {
+        		/* 
+        		 * ћожно также получать параметры через getParameters, 
+        		 * а их значени€ получать через другие аннотации и т.д.
+        		 */
+        		log.info("PostConstruct was used");
+        		method.invoke(instance, null); 
+        	}
         }
     }
 

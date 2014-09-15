@@ -4,6 +4,7 @@ package week7.reflection;
 //import javax.annotation.PostConstruct;
 
 import week7.reflection.di.Auto;
+import week7.reflection.di.PostConstruct;
 
 public class Car {
 
@@ -16,10 +17,11 @@ public class Car {
     public Car() {
     }
 
+    @PostConstruct
     public void init() {
         System.out.println("Post Init");
     }
-
+    
     @Override
     public String toString() {
         return "Car{" +
